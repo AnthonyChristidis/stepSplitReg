@@ -64,8 +64,8 @@ step.out <- cv.stepSplitReg(x.train, y.train, n_models = c(5, 10), max_variables
                             n_lambda = 50, tolerance = 1e-2, max_iter = 1e5, n_folds = 5, 
                             model_weights = c("Equal", "Proportional", "Stacking")[1], 
                             n_threads = 1)
-step.coefficients <- coef(step.out, group_index = 1:20)
-step.predictions <- predict(step.out, x.test, group_index = 1:20)
+step.coefficients <- coef(step.out, group_index = 1:step.out$n_models_optimal)
+step.predictions <- predict(step.out, x.test, group_index = 1:step.out$n_models_optimal)
 mspe.step <- mean((step.predictions-y.test)^2)/sigma.epsilon^2
 }
 

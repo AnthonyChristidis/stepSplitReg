@@ -11,7 +11,6 @@
 
  // Libraries included
 #include <RcppArmadillo.h>
-#include <iostream>
 
 // Header files included
 #include "Model.hpp"
@@ -252,7 +251,6 @@ Rcpp::List CV_Stepwise_Split(arma::mat x,
             predictions /= n_models_cv;
             
             // Storing the test fold indices
-            std::cout << "Fold " << fold << ": " << arma::mean(arma::square(y.rows(test) - predictions)) << std::endl;
             cv_mspe[model_ind] += arma::mean(arma::square(y.rows(test) - predictions));
         }
     }

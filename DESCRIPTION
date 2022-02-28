@@ -16,9 +16,9 @@ License: GPL (>= 2)
 Biarch: true
 Imports: Rcpp (>= 1.0.7),
          SplitGLM,
-         mvnfast,
-         nnls,
-         testthat
+         nnls
+Suggests: testthat,
+          mvnfast
 LinkingTo: Rcpp, RcppArmadillo
 RoxygenNote: 7.1.1
 NeedsCompilation: yes

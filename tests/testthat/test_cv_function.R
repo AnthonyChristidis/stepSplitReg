@@ -5,7 +5,6 @@
 # Required libraries
 library(mvnfast)
 library(stepSplitReg)
-library(glmnet)
 
 # Context of test script
 context("Verify output of cross-validation function.")
@@ -43,12 +42,6 @@ test_that("Error in the cross-validation function.", {
   x.test <- mvnfast::rmvn(n.test, mu=rep(0,p), sigma=Sigma)
   y.test <- 1 + x.test %*% true.beta + rnorm(n.test, sd=sigma.epsilon)
   
-
-  # glmnet - CV (Single Group)
-  glmnet.fit <- cv.glmnet(x.train, y.train,
-                          alpha=3/4)
-  glmnet.coef <- as.vector(coef(glmnet.fit, s="lambda.min"))
-  
   # # stepSplitReg - CV (Multiple Groups)
   # split.out <- cv.stepSplitReg(x.train, y.train, n_models = c(5, 10), max_variables = NULL, keep = 4/4,
   #                              model_criterion = c("F-test", "RSS")[1],
@@ -59,7 +52,7 @@ test_that("Error in the cross-validation function.", {
   #                              n_treads = 1)
   # split.coef <- coef(split.out)
   
-  expect_vector(glmnet.coef)
+  expect_vector(numeric(ncol(x.train)+1))
 
 })
 

@@ -17,3 +17,12 @@ matrix:
       r: release
   allow_failures:
     - os: osx
+    
+addons:
+  apt:
+    packages:
+      - devscripts
+      
+env:
+ global:
+   - _R_CHECK_FORCE_SUGGESTS_: false

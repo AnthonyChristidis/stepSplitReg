@@ -7,7 +7,7 @@ models.predictions <- function(x, y, models,
                                shrinkage, alpha, n_lambda_sparsity, tolerance, max_iter, n_folds){
   
   # Creating the folds
-  folds <- caret::createFolds(1:nrow(x), k = n_folds)
+  folds <- create_folds(nrow(x), nfolds = n_folds)
   # Storing the number of models
   n.models <- length(unlist(models$cv_error))
   # Storing the number of folds
@@ -65,7 +65,7 @@ models.predictions <- function(x, y, models,
 # Function to compute the optimal weights (prediction matrix is provided)
 model.stacking.matrix <- function(y, prediction.matrix){
   
-  # Optimal weights via the prediction matrix from glmnet
+  # Optimal weights via the prediction matrix from NNLS
   optimal_weights <- nnls::nnls(prediction.matrix, y)$x  
   # Return optimal weights
   return(optimal_weights)

@@ -15,11 +15,9 @@ Description: Functions to perform stepwise split regularized regression. The app
 License: GPL (>= 2)
 Biarch: true
 Imports: Rcpp (>= 1.0.7),
-         cvTools,
          SplitGLM,
          mvnfast,
-         caret, 
-         glmnet, 
+         glmnet,
          nnls,
          testthat
 LinkingTo: Rcpp, RcppArmadillo

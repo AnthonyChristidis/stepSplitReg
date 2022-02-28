@@ -2,7 +2,7 @@
 #' @useDynLib stepSplitReg
 #' @importFrom Rcpp sourceCpp
 #' 
-#' @importFrom stats coef cov mahalanobis predict
+#' @importFrom stats coef cov mahalanobis predict rbinom
 #'
 #' @title Stepwise Split Regularized Regression
 #' 

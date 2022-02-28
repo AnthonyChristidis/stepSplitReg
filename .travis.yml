@@ -21,7 +21,11 @@ matrix:
 addons:
   apt:
     packages:
-      - devscripts
+      - libgdal-dev
+      - libproj-dev
+      - libudunits2-dev
+      - netcdf-bin
+      - libmpfr-dev
       
 env:
  global:

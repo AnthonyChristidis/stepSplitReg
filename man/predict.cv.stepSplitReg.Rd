@@ -64,8 +64,7 @@ step.out <- cv.stepSplitReg(x.train, y.train, n_models = c(5, 10), max_variables
                             stop_parameter = 0.05, 
                             shrinkage = TRUE, alpha = 4/4, include_intercept = TRUE, 
                             n_lambda = 50, tolerance = 1e-2, max_iter = 1e5, n_folds = 5, 
-                            model_weights = c("Equal", "Proportional", "Stacking", "EN")[1], 
-                            ensemble_alpha = 3/4,
+                            model_weights = c("Equal", "Proportional", "Stacking")[1],
                             n_threads = 1)
 step.coefficients <- coef(step.out, group_index = 1:20)
 step.predictions <- predict(step.out, x.test, group_index = 1:20)

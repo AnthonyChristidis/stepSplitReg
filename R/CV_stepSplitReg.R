@@ -18,8 +18,7 @@
 #' @param tolerance Convergence criteria for the coefficients. Default is 1e-3.
 #' @param max_iter Maximum number of iterations in the algorithm. Default is 1e5.
 #' @param n_folds Number of cross-validation folds. Default is 10.
-#' @param model_weights Criterion to determine the weights of the model for prediciton. Must be one of c("Equal", "Proportional", "Stacking", "EN"). Default is "Equal".
-#' @param ensemble_alpha Model shrinkage parameter if the model weights criterion is "EN". Default is 3/4.
+#' @param model_weights Criterion to determine the weights of the model for prediciton. Must be one of c("Equal", "Proportional", "Stacking"). Default is "Equal".
 #' @param n_threads Number of threads. Default is 1.
 #' 
 #' @return An object of class cv.stepSplitReg.
@@ -73,8 +72,7 @@
 #'                             stop_parameter = 0.05, 
 #'                             shrinkage = TRUE, alpha = 4/4, include_intercept = TRUE, 
 #'                             n_lambda = 50, tolerance = 1e-2, max_iter = 1e5, n_folds = 5, 
-#'                             model_weights = c("Equal", "Proportional", "Stacking", "EN")[1], 
-#'                             ensemble_alpha = 3/4,
+#'                             model_weights = c("Equal", "Proportional", "Stacking")[1], 
 #'                             n_threads = 1)
 #' step.coefficients <- coef(step.out, group_index = 1:20)
 #' step.predictions <- predict(step.out, x.test, group_index = 1:20)
@@ -86,7 +84,7 @@ cv.stepSplitReg <- function(x, y, n_models = NULL, max_variables = NULL, keep = 
                             stop_criterion = c("F-test", "pR2", "aR2", "R2", "Fixed")[1], stop_parameter = 0.05, 
                             shrinkage = TRUE, alpha = 3/4, include_intercept = TRUE, 
                             n_lambda = 100, tolerance = 1e-3, max_iter = 1e5, n_folds = 10, 
-                            model_weights = c("Equal", "Proportional", "Stacking", "EN")[1], ensemble_alpha = 3/4,
+                            model_weights = c("Equal", "Proportional", "Stacking")[1], 
                             n_threads = 1){
   
   # Check function input
@@ -95,7 +93,7 @@ cv.stepSplitReg <- function(x, y, n_models = NULL, max_variables = NULL, keep = 
                 stop_criterion, stop_parameter, 
                 shrinkage, alpha, include_intercept, 
                 n_lambda, tolerance, max_iter, n_folds, 
-                model_weights, ensemble_alpha,
+                model_weights,
                 n_threads)
   
   # Setting the numerical index for the stop criterion
@@ -179,12 +177,6 @@ cv.stepSplitReg <- function(x, y, n_models = NULL, max_variables = NULL, keep = 
     
     output$models_weights <- rep(1/output$n_models_optimal, output$n_models_optimal)
     
-  } else if (model_weights == "EN"){ # EN optimal weights
-    
-    prediction.matrix <- models.predictions(x.permutation, y.permutation, output,
-                                            shrinkage, alpha, n_lambda, tolerance, max_iter, n_folds)
-    weights.temp <- glmnet::cv.glmnet(prediction.matrix, y.permutation, alpha = ensemble_alpha, keep = FALSE, lower.limits=0)
-    output$models_weights <- as.numeric(weights.temp$glmnet.fit$beta[, which(weights.temp$lambda == weights.temp$lambda.min)])
   }
   
   # Create the object of class "cv.stepSplitReg"

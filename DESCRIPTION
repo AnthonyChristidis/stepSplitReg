@@ -17,7 +17,6 @@ Biarch: true
 Imports: Rcpp (>= 1.0.7),
          SplitGLM,
          mvnfast,
-         glmnet,
          nnls,
          testthat
 LinkingTo: Rcpp, RcppArmadillo

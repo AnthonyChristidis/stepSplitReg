@@ -6,7 +6,7 @@ Data_Check <- function(x, y, n_models, max_variables, keep,
                        stop_criterion, stop_parameter, 
                        shrinkage, alpha, include_intercept, 
                        n_lambda, tolerance, max_iter, n_folds, 
-                       model_weights, ensemble_alpha){
+                       model_weights){
   
   # Checking the input for the design matrix (x) and the response vector (y)
   if (all(!inherits(x, "matrix"), !inherits(x, "data.frame"))) {
@@ -125,13 +125,6 @@ Data_Check <- function(x, y, n_models, max_variables, keep,
   # Checking input for model weights method
   if(!(model_weights %in% c("Equal", "Stacking", "Proportional", "EN")))
     stop("The shrinkage method must be one of: Proportional, Stacking, Equal or EN")
-  
-  # Check ensemble_alpha value
-  if(!inherits(ensemble_alpha, "numeric")) {
-    stop("ensemble_alpha should be numeric.")
-  } else if(!all(ensemble_alpha <= 1, ensemble_alpha > 0)) {
-    stop("ensemble_alpha should be between 0 and 1.")
-  }
 }
 
 # ------------------------------------------------
@@ -142,7 +135,7 @@ Data_Check_CV <- function(x, y, n_models, max_variables, keep,
                           stop_criterion, stop_parameter, 
                           shrinkage, alpha, include_intercept, 
                           n_lambda, tolerance, max_iter, n_folds, 
-                          model_weights, ensemble_alpha,
+                          model_weights,
                           n_threads){
   
   # Checking the input for the design matrix (x) and the response vector (y)
@@ -262,13 +255,6 @@ Data_Check_CV <- function(x, y, n_models, max_variables, keep,
   # Checking input for model weights method
   if(!(model_weights %in% c("Equal", "Stacking", "Proportional", "EN")))
     stop("The shrinkage method must be one of: Proportional, Stacking, Equal or EN")
-  
-  # Check ensemble_alpha value
-  if(!inherits(ensemble_alpha, "numeric")) {
-    stop("ensemble_alpha should be numeric.")
-  } else if(!all(ensemble_alpha <= 1, ensemble_alpha > 0)) {
-    stop("ensemble_alpha should be between 0 and 1.")
-  }
   
   # Check input for number of threads
   if(!inherits(n_threads, "numeric")) {

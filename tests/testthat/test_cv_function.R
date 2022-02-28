@@ -48,7 +48,7 @@ test_that("Error in the cross-validation function.", {
   #                              stop_criterion = c("F-test", "pR2", "aR2", "R2", "Fixed")[1], stop_parameter = 0.05, 
   #                              shrinkage = TRUE, alpha = 4/4, include_intercept = TRUE, 
   #                              n_lambda = 100, tolerance = 1e-2, max_iter = 1e5, n_folds = 5, 
-  #                              model_weights = c("Proportional", "Equal", "Stacking", "EN")[2], ensemble_alpha = 3/4,
+  #                              model_weights = c("Equal", "Proportional", "Stacking")[1], 
   #                              n_treads = 1)
   # split.coef <- coef(split.out)
   

@@ -20,8 +20,7 @@ cv.stepSplitReg(
   tolerance = 0.001,
   max_iter = 1e+05,
   n_folds = 10,
-  model_weights = c("Equal", "Proportional", "Stacking", "EN")[1],
-  ensemble_alpha = 3/4,
+  model_weights = c("Equal", "Proportional", "Stacking")[1],
   n_threads = 1
 )
 }
@@ -56,9 +55,7 @@ cv.stepSplitReg(
 
 \item{n_folds}{Number of cross-validation folds. Default is 10.}
 
-\item{model_weights}{Criterion to determine the weights of the model for prediciton. Must be one of c("Equal", "Proportional", "Stacking", "EN"). Default is "Equal".}
-
-\item{ensemble_alpha}{Model shrinkage parameter if the model weights criterion is "EN". Default is 3/4.}
+\item{model_weights}{Criterion to determine the weights of the model for prediciton. Must be one of c("Equal", "Proportional", "Stacking"). Default is "Equal".}
 
 \item{n_threads}{Number of threads. Default is 1.}
 }
@@ -111,8 +108,7 @@ step.out <- cv.stepSplitReg(x.train, y.train, n_models = c(5, 10), max_variables
                             stop_parameter = 0.05, 
                             shrinkage = TRUE, alpha = 4/4, include_intercept = TRUE, 
                             n_lambda = 50, tolerance = 1e-2, max_iter = 1e5, n_folds = 5, 
-                            model_weights = c("Equal", "Proportional", "Stacking", "EN")[1], 
-                            ensemble_alpha = 3/4,
+                            model_weights = c("Equal", "Proportional", "Stacking")[1], 
                             n_threads = 1)
 step.coefficients <- coef(step.out, group_index = 1:20)
 step.predictions <- predict(step.out, x.test, group_index = 1:20)

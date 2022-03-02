@@ -20,18 +20,16 @@ The coefficients for the cv.stepSplitReg object.
 \code{coef.cv.stepSplitReg} returns the coefficients for a cv.stepSplitReg object.
 }
 \examples{
-\donttest{
 # Required Libraries
 library(mvnfast)
 
 # Setting the parameters
-p <- 800
-n <- 40
-n.test <- 2000
+p <- 100
+n <- 30
+n.test <- 500
 sparsity <- 0.2
 rho <- 0.5
 SNR <- 3
-set.seed(0)
 
 # Generating the coefficient
 p.active <- floor(p*sparsity)
@@ -56,7 +54,7 @@ x.test <- mvnfast::rmvn(n.test, mu=rep(0,p), sigma=Sigma)
 y.test <- 1 + x.test \%*\% true.beta + rnorm(n.test, sd=sigma.epsilon)
 
 # Stepwise Split Regularized Regression
-step.out <- cv.stepSplitReg(x.train, y.train, n_models = c(5, 10), max_variables = NULL, keep = 4/4,
+step.out <- cv.stepSplitReg(x.train, y.train, n_models = c(2, 3), max_variables = NULL, keep = 4/4,
                             model_criterion = c("F-test", "RSS")[1],
                             stop_criterion = c("F-test", "pR2", "aR2", "R2", "Fixed")[1], 
                             stop_parameter = 0.05, 
@@ -67,7 +65,6 @@ step.out <- cv.stepSplitReg(x.train, y.train, n_models = c(5, 10), max_variables
 step.coefficients <- coef(step.out, group_index = 1:step.out$n_models_optimal)
 step.predictions <- predict(step.out, x.test, group_index = 1:step.out$n_models_optimal)
 mspe.step <- mean((step.predictions-y.test)^2)/sigma.epsilon^2
-}
 
 }
 \seealso{

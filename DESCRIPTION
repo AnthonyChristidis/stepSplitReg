@@ -2,11 +2,10 @@ Package: stepSplitReg
 Type: Package
 Title: Stepwise Split Regularized Regression
 Version: 1.0.0
-Date: 2022-02-26
-Author: Anthony Christidis <anthony.christidis@stat.ubc.ca>,
-    Stefan Van Aelst <stefan.vanaelst@kuleuven.be>,
-    Ruben Zamar <ruben@stat.ubc.ca>
-Maintainer: Anthony Christidis <anthony.christidis@stat.ubc.ca>
+Date: 2022-03-02
+Authors@R: c(person("Anthony", "Christidis", role=c("aut", "cre"), email = "anthony.christidis@stat.ubc.ca"),
+	     person("Stefan", "Van Aelst", role=c("aut"), email = "stefan.vanaelst@kuleuven.be"),
+	     person("Ruben", "Zamar", role=c("aut"), email = "ruben@stat.ubc.ca"))
 Description: Functions to perform stepwise split regularized regression. The approach first 
              uses a stepwise algorithm to split the variables into the models with a goodness
              of fit criterion, and then regularization is applied to each model. The weights 

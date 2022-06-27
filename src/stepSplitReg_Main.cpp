@@ -262,7 +262,6 @@ Rcpp::List CV_Stepwise_Split(arma::mat x,
     
     // Optimal number of models
     arma::vec cv_mspe_models = arma::mean(cv_mspe, 1);
-    std::cout << "cv_mspe_models: " << cv_mspe_models << std::endl;
     arma::uword n_models_optimal = n_models[cv_mspe_models.index_min()];
     
     // Stepwise split with optimal number of models

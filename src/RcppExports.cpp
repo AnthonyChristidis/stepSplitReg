@@ -11,19 +11,6 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
-// pf_CPP
-double pf_CPP(double& F_val, arma::uword& df1, arma::uword& df2);
-RcppExport SEXP _stepSplitReg_pf_CPP(SEXP F_valSEXP, SEXP df1SEXP, SEXP df2SEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< double& >::type F_val(F_valSEXP);
-    Rcpp::traits::input_parameter< arma::uword& >::type df1(df1SEXP);
-    Rcpp::traits::input_parameter< arma::uword& >::type df2(df2SEXP);
-    rcpp_result_gen = Rcpp::wrap(pf_CPP(F_val, df1, df2));
-    return rcpp_result_gen;
-END_RCPP
-}
 // Stepwise_Split
 Rcpp::List Stepwise_Split(arma::mat x, arma::vec y, arma::uword n_models, arma::uword max_variables_per_model, const arma::uword& model_criterion, const arma::uword& stop_criterion, const double& stop_parameter, const arma::uword& shrinkage, const double& alpha, const arma::uword& include_intercept, const arma::uword& n_lambda, const double& tolerance, const arma::uword& max_iter, const arma::uword& n_folds);
 RcppExport SEXP _stepSplitReg_Stepwise_Split(SEXP xSEXP, SEXP ySEXP, SEXP n_modelsSEXP, SEXP max_variables_per_modelSEXP, SEXP model_criterionSEXP, SEXP stop_criterionSEXP, SEXP stop_parameterSEXP, SEXP shrinkageSEXP, SEXP alphaSEXP, SEXP include_interceptSEXP, SEXP n_lambdaSEXP, SEXP toleranceSEXP, SEXP max_iterSEXP, SEXP n_foldsSEXP) {
@@ -75,7 +62,6 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_stepSplitReg_pf_CPP", (DL_FUNC) &_stepSplitReg_pf_CPP, 3},
     {"_stepSplitReg_Stepwise_Split", (DL_FUNC) &_stepSplitReg_Stepwise_Split, 14},
     {"_stepSplitReg_CV_Stepwise_Split", (DL_FUNC) &_stepSplitReg_CV_Stepwise_Split, 15},
     {NULL, NULL, 0}

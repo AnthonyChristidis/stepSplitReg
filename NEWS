@@ -1,2 +1,10 @@
 # stepSplitReg 1.0.0
 * Initial stable release of package.
+
+# stepSplitReg 1.0.1
+* Fix valgrind error.
+* Fix coefficient method.
+
+# stepSplitReg 1.0.2
+* Fix model selection criteria.
+* Add multithreading for cross-validation function.

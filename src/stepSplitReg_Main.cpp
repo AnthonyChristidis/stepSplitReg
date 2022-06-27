@@ -31,12 +31,6 @@ Rcpp::List Stepwise_Split(arma::mat x,
                           const arma::uword& n_lambda, const double& tolerance, const arma::uword& max_iter,
                           const arma::uword& n_folds) {
 
-    
-    // Pause
-    Rcpp::Environment base = Rcpp::Environment("package:base");
-    Rcpp::Function readline = base["readline"];
-    std::string mystring;
-    
     // Standardizing the covariates
     arma::rowvec mu_x = mean(x);
     arma::rowvec sd_x = stddev(x, 1);
@@ -114,31 +108,11 @@ Rcpp::List Stepwise_Split(arma::mat x,
             optimal_model = models_p_val.index_min();
         }
         
-        // Optimal model
-        std::cout << "variable_counter:\n";
-        for (arma::uword m = 0; m < n_models; m++)
-            std::cout << models[m]->Get_Counter() << std::endl;
-        std::cout << std::endl;
-        std::cout << "current_rss:\n";
-        for (arma::uword m = 0; m < n_models; m++)
-            std::cout << models[m]->Get_RSS() << std::endl;
-        std::cout << std::endl;
-        std::cout << "models_rss_decrease:\n";
-        for (arma::uword m = 0; m < n_models; m++)
-            std::cout << models[m]->Get_Optimal_RSS_Decrease() << std::endl;
-        std::cout << std::endl;
-        std::cout << "models_p_val:\n" << models_p_val;
-        std::cout << "Optimal Model: " << optimal_model << std::endl << std::endl;
-
         // Add the best variable for the optimal model
         models[optimal_model]->Variable_Update(models[optimal_model]->Get_Optimal_Variable(), x_std, y_c);
         // Remove the optimal variable from the candidates
-        std::cout << "Optimal Variable: " << models[optimal_model]->Get_Optimal_Variable() << std::endl;
         index_optimal = arma::find(candidates == models[optimal_model]->Get_Optimal_Variable(), 1);
         candidates.shed_row(index_optimal(0));
-
-        // Pause
-        mystring = Rcpp::as<std::string>(readline("Click Enter: "));
 
         // Updating the optimal variable for the non-optimal model(s)
         // Parallelization over the models? Not recommended to multi-thread in and out of R.

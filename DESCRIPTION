@@ -1,8 +1,8 @@
 Package: stepSplitReg
 Type: Package
 Title: Stepwise Split Regularized Regression
-Version: 1.0.2
-Date: 2022-06-26
+Version: 1.0.3
+Date: 2022-11-21
 Authors@R: c(person("Anthony", "Christidis", role=c("aut", "cre"), email = "anthony.christidis@stat.ubc.ca"),
 	     person("Stefan", "Van Aelst", role=c("aut"), email = "stefan.vanaelst@kuleuven.be"),
 	     person("Ruben", "Zamar", role=c("aut"), email = "ruben@stat.ubc.ca"))

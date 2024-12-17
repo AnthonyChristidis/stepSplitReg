@@ -54,7 +54,6 @@ test_that("Error in the cross-validation function.", {
   # split.coef <- coef(split.out)
   
   expect_vector(numeric(ncol(x.train)+1))
-
 })
 
 

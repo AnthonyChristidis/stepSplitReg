@@ -1,8 +1,8 @@
 Package: stepSplitReg
 Type: Package
 Title: Stepwise Split Regularized Regression
-Version: 1.0.3
-Date: 2022-11-21
+Version: 1.0.4
+Date: 2024-12-16
 Authors@R: c(person("Anthony", "Christidis", role=c("aut", "cre"), email = "anthony.christidis@stat.ubc.ca"),
 	     person("Stefan", "Van Aelst", role=c("aut"), email = "stefan.vanaelst@kuleuven.be"),
 	     person("Ruben", "Zamar", role=c("aut"), email = "ruben@stat.ubc.ca"))
@@ -17,7 +17,8 @@ Imports: Rcpp (>= 1.0.7),
          SplitGLM,
          nnls
 Suggests: testthat,
-          mvnfast
+          mvnfast,
+          vctrs
 LinkingTo: Rcpp, RcppArmadillo
-RoxygenNote: 7.1.1
+RoxygenNote: 7.3.2
 NeedsCompilation: yes
